@@ -8,29 +8,26 @@ pipeline {
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Build Docker Image') {
             steps {
-                bat 'docker build -t feedback-app -f app/Dockerfile .'
+                bat 'docker build -t feedback-app -f app/Dockerfile app'
             }
         }
 
-        stage('Run Containers') {
+        stage('Run Container') {
             steps {
-                bat 'docker-compose down || exit 0'
-                bat 'docker-compose up -d'
+                bat '''
+                docker stop feedback-container || echo "Already stopped"
+                docker rm feedback-container || echo "Already removed"
+                docker run -d -p 8083:5000 --name feedback-container feedback-app
+                '''
             }
         }
 
-        stage('Verify Containers') {
+        stage('Verify Container') {
             steps {
                 bat 'docker ps'
-            }
-        }
-
-        stage('Clean Up') {
-            steps {
-                bat 'docker stop feedback-container || echo Already stopped'
-                bat 'docker rm feedback-container || echo Already removed'
+                bat 'docker logs feedback-container'
             }
         }
     }
