@@ -10,7 +10,8 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                bat 'docker build -t feedback-app .'
+                bat 'docker build -t feedback-app -f app/Dockerfile .'
+ 
             }
         }
 
