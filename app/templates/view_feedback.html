@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Feedbacks</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      text-align: center;
+      margin-top: 50px;
+    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 60%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>All Student Feedbacks</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Feedback</th>
+    </tr>
+    {% for name, feedback in data %}
+    <tr>
+      <td>{{ name }}</td>
+      <td>{{ feedback }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="/">Go Back</a>
+</body>
+</html>

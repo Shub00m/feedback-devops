@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      text-align: center;
+      margin-top: 80px;
+    }
+    form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 250px;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Feedback Form</h2>
+  <form action="/submit" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <textarea name="feedback" placeholder="Your Feedback" required></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+  <a href="/view">View All Feedbacks</a>
+</body>
+</html>
