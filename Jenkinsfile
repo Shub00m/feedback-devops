@@ -10,25 +10,26 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build'
+                bat 'docker build -t feedback-app .'
             }
         }
 
         stage('Run Containers') {
             steps {
-                sh 'docker-compose up -d'
+                bat 'docker run -d -p 8083:80 --name feedback-container feedback-app'
             }
         }
 
         stage('Verify Containers') {
             steps {
-                sh 'docker ps'
+                bat 'docker ps'
             }
         }
 
         stage('Clean Up') {
             steps {
-                sh 'docker-compose down -v'
+                bat 'docker stop feedback-container || echo Already stopped'
+                bat 'docker rm feedback-container || echo Already removed'
             }
         }
     }
