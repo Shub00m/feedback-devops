@@ -1,21 +1,15 @@
-# Use official Python image
 FROM python:3.10-slim
 
-# Set working directory inside container
 WORKDIR /app
 
-# Copy only requirements file first (from root folder)
-COPY app/requirements.txt .
+# Copy requirements file from current directory (app/)
+COPY requirements.txt .
 
-
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application files
+# Copy all files from app folder into /app
 COPY . .
 
-# Expose Flask default port
 EXPOSE 5000
 
-# Run the wait script first, then start Flask
 CMD ["sh", "-c", "python wait_for_mysql.py && python app.py"]
