@@ -11,13 +11,13 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 bat 'docker build -t feedback-app -f app/Dockerfile .'
- 
             }
         }
 
         stage('Run Containers') {
             steps {
-                bat 'docker run -d -p 8083:80 --name feedback-container feedback-app'
+                bat 'docker-compose down || exit 0'
+                bat 'docker-compose up -d'
             }
         }
 
