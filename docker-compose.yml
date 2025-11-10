@@ -19,11 +19,11 @@ services:
       start_period: 20s  # allows MySQL time to initialize
 
   web:
-    build: ./app    # 👈 Flask app located in 'app/' folder
+    build: ./app    # Flask app located in 'app/' folder
     ports:
-      - "5000:5000"
+      - "8083:5000"   # 👈 Changed from 5000:5000 → 8083:5000
     environment:
-      - FLASK_DEBUG=1       # replaced FLASK_ENV (deprecated)
+      - FLASK_DEBUG=1
       - MYSQL_HOST=db
       - MYSQL_USER=root
       - MYSQL_PASSWORD=rootpassword
